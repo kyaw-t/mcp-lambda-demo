@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local deploy config (holds Cognito client secret) — never commit
+deploy/config.sh

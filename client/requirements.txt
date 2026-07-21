@@ -1,0 +1,3 @@
+# Client-side dependencies for test_client.py
+mcp>=1.9.0
+requests>=2.31.0

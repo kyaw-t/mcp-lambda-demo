@@ -1,0 +1,116 @@
+[
+  {
+    "name": "get_product",
+    "description": "Look up a single product by its product_id and return its name, category, price and current stock level.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "description": "The product identifier, e.g. 'P-1001'."
+        }
+      },
+      "required": ["product_id"]
+    }
+  },
+  {
+    "name": "search_products",
+    "description": "Search the product catalog by a free-text query matched against product name and category. Returns matching products.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Free-text search term, e.g. 'headphones' or 'kitchen'."
+        },
+        "max_results": {
+          "type": "integer",
+          "description": "Maximum number of products to return. Defaults to 10 if omitted."
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "get_order",
+    "description": "Retrieve a single order by its order_id, including its status, line items and total.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string",
+          "description": "The order identifier, e.g. 'O-5001'."
+        }
+      },
+      "required": ["order_id"]
+    }
+  },
+  {
+    "name": "list_orders",
+    "description": "List all orders belonging to a customer, optionally filtered by order status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "type": "string",
+          "description": "The customer identifier, e.g. 'C-900'."
+        },
+        "status": {
+          "type": "string",
+          "description": "Optional status filter. One of PENDING, SHIPPED, DELIVERED, CANCELLED (case-insensitive)."
+        }
+      },
+      "required": ["customer_id"]
+    }
+  },
+  {
+    "name": "create_order",
+    "description": "Create a new PENDING order for a customer from a list of line items. Validates stock and computes the total.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "type": "string",
+          "description": "The customer the order belongs to, e.g. 'C-900'."
+        },
+        "items": {
+          "type": "array",
+          "description": "The line items to order. Each item references a product and a quantity.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "product_id": {
+                "type": "string",
+                "description": "The product to order, e.g. 'P-1001'."
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "How many units of the product to order. Must be a positive integer."
+              }
+            },
+            "required": ["product_id", "quantity"]
+          }
+        }
+      },
+      "required": ["customer_id", "items"]
+    }
+  },
+  {
+    "name": "cancel_order",
+    "description": "Cancel an existing order by order_id. Orders that are already DELIVERED or CANCELLED cannot be cancelled.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string",
+          "description": "The order to cancel, e.g. 'O-5003'."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Optional free-text reason for the cancellation."
+        }
+      },
+      "required": ["order_id"]
+    }
+  }
+]

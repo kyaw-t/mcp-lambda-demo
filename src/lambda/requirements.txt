@@ -1,0 +1,4 @@
+# The demo tools use only the Python standard library, so there are no
+# third-party runtime dependencies to install into the Lambda package.
+# If you add dependencies, list them here and have 10_deploy_lambda.sh
+# pip-install them into the build directory before zipping.
