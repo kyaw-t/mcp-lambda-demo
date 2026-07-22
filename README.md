@@ -17,6 +17,7 @@ and wires it up to a managed MCP endpoint with Cognito (OAuth2) inbound auth.
 │   ├── 02-lambda-contract.md             the exact Lambda ⇄ Gateway interface
 │   ├── 03-deployment-guide.md            step-by-step deploy (scripts + raw CLI)
 │   ├── 04-testing-and-troubleshooting.md test recipes + failure matrix
+│   ├── 05-cloudformation-harness.md      deploy the whole stack via CloudFormation
 │   └── architecture.md                   diagram + request lifecycle
 ├── src/lambda/                   the tool Lambda (Python, stdlib only)
 │   ├── handler.py                gateway entry point: strips prefix, routes
@@ -115,6 +116,7 @@ about the gateway integration changes.
 - Just want the interface? → [`docs/02-lambda-contract.md`](docs/02-lambda-contract.md)
 - Ready to deploy? → [`docs/03-deployment-guide.md`](docs/03-deployment-guide.md)
 - Something broke? → [`docs/04-testing-and-troubleshooting.md`](docs/04-testing-and-troubleshooting.md)
+- Want it as one CloudFormation stack? → [`docs/05-cloudformation-harness.md`](docs/05-cloudformation-harness.md)
 
 ## Notes & caveats
 

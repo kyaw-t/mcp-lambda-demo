@@ -4,6 +4,10 @@
 thing the step-by-step boto3 scripts in `deploy/` do, but declaratively and in
 one shot.
 
+> For a narrative walkthrough of the template (what each resource does, the
+> reference graph, and the full annotated YAML), see
+> [`docs/05-cloudformation-harness.md`](../../docs/05-cloudformation-harness.md).
+
 ## What the stack creates
 
 | Logical ID | Type | Role |
