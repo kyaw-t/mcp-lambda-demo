@@ -28,7 +28,10 @@ and wires it up to a managed MCP endpoint with Cognito (OAuth2) inbound auth.
 │   ├── 10_deploy_lambda.sh       package + create/update the Lambda
 │   ├── 20_setup_cognito.py       Cognito user pool for inbound auth
 │   ├── 30_setup_gateway.py       gateway IAM role + gateway + Lambda target
-│   └── iam/                      trust & permission policy documents
+│   ├── iam/                      trust & permission policy documents
+│   └── cloudformation/           one-stack alternative to the scripts above
+│       ├── agentcore-harness.yaml   full stack (Lambda, Cognito, gateway, target)
+│       └── deploy_stack.sh          package + upload + deploy in one command
 └── client/test_client.py         auth + list + call tools over MCP (smoke test)
 ```
 
@@ -85,6 +88,11 @@ two tool calls return live JSON from the Lambda.
 
 Full walkthrough with the raw AWS CLI/boto3 equivalent of every step:
 [`docs/03-deployment-guide.md`](docs/03-deployment-guide.md).
+
+**Prefer infrastructure-as-code?** `deploy/cloudformation/` builds the identical
+harness as a single CloudFormation stack (using the native
+`AWS::BedrockAgentCore::Gateway` / `::GatewayTarget` resource types) — see
+[`deploy/cloudformation/README.md`](deploy/cloudformation/README.md).
 
 ## The tools
 
